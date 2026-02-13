@@ -44,6 +44,11 @@ Test cases are ordered from highest business risk to lowest.
 10. Confirmation page is displayed
 11. Appointment visible on Dashboard and Medical Questionnaire task created
 
+**Backend Validation (Hub Portal – Data Consistency Check)**
+- Login to staging-hub.ezra.com
+- Search for member by email or GUID
+- Verify appointment status matches user portal
+- Verify no duplicate records
 ---
 
 ## TC02 – Payment Decline Does Not Create Appointment
