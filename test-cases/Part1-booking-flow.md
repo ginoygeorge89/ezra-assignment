@@ -16,7 +16,8 @@ Test cases are ordered from highest business risk to lowest.
 ## TC01 – Successful End-to-End Booking (Happy Path)
 
 **Preconditions**
-- User has access to the application
+
+- **Create a user in Hub and provide the required fields including DOB and Age in Settings or create a user directly from Member facing portal**
 
 **Test Steps**
 1. Login to https://myezra-staging.ezra.com/
@@ -329,6 +330,8 @@ The following were tested but not included in the Top 15 due to prioritization o
 - Multi-language translation verification across booking flow
 - Session timeout and automatic logout behavior
 - Direct URL access restriction without completing prior steps
+- When you have more than 5 appointments - scrolling works smoothly
+- 
 
 ---
 
