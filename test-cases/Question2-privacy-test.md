@@ -105,4 +105,69 @@ All sensitive endpoints should validate authorization server-side.
 
 ----
 
+## Part 3 – Managing Security Quality Across Sensitive Endpoints
+
+Ezra’s platform handles highly sensitive medical information, so ensuring consistent security across a large number of endpoints requires a layered and systematic approach.
+
+### 1. Centralized Authorization Enforcement
+
+Instead of relying on each endpoint to implement its own access logic, authorization should be enforced through centralized middleware or policy services.  
+
+This ensures:
+- Every request validates the authenticated user identity
+- Ownership of the resource (memberId / encounterId) is checked
+- Role-based permissions are enforced consistently
+
+This approach reduces the risk of individual endpoints accidentally bypassing security rules.
+
+---
+
+### 2. Automated Security Regression Tests
+
+For endpoints handling sensitive data, automated tests should verify that:
+
+- Cross-user data access attempts fail
+- Tokens cannot be reused to access another member’s records
+- Expired or invalid tokens are rejected
+- Requests without authentication return unauthorized responses
+
+These tests should run in CI pipelines to prevent regressions as new endpoints are added.
+
+---
+
+### 3. Logging and Monitoring
+
+Security-sensitive endpoints should produce audit logs capturing:
+
+- User identity
+- Resource accessed
+- Timestamp
+- Authorization failures
+
+This helps detect abnormal access patterns and supports incident investigation while ensuring logs do not contain sensitive medical details.
+
+---
+
+### 4. Tradeoffs and Risks
+
+Implementing strong endpoint security introduces some tradeoffs:
+
+- Additional authorization checks may slightly increase response latency
+- Centralized security layers add architectural complexity
+- Security testing requires maintenance and stable test data
+
+However, the risks of weak access control are significantly higher:
+
+- Exposure of protected medical information
+- Compliance violations (HIPAA, privacy laws)
+- Loss of user trust and potential legal impact
+
+Given the sensitivity of healthcare data, strict authorization enforcement is necessary even at the cost of minor performance overhead.
+
+---
+
+### Summary
+
+My approach focuses on preventing data exposure through consistent authorization validation, automated testing, and strong monitoring practices.  
+This ensures privacy protections scale as the number of endpoints grows.
 
